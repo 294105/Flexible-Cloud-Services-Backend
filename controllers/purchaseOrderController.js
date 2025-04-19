@@ -24,7 +24,8 @@ exports.createPurchaseOrder = async (req, res) => {
   
   exports.getPurchaseOrderById = async (req, res) => {
     try {
-      const order = await PurchaseOrder.findById(req.params.id);
+        const purchaseOrder = await PurchaseOrder.findById(req.params.id).populate('trainer');
+        const trainer = purchaseOrder.trainer;
       if (!order) {
         return res.status(404).json({ message: 'Purchase Order not found' });
       }

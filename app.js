@@ -4,6 +4,7 @@ const dotenv = require('dotenv');
 const cors = require('cors');
 const connectDB = require('./config/db');
 
+
 dotenv.config();
 connectDB();
 
@@ -28,6 +29,9 @@ app.use('/api/purchase-orders', purchaseOrderRoutes);
 const invoiceRoutes = require('./routes/invoices');
 app.use('/api/invoices', invoiceRoutes);
 
+app.use('/api/employees', require('./routes/employees'));
+
+app.use('/api/salaries', require('./routes/salaries'));
 
 // app.js
 // const financeRoutes = require('./routes/finance');
@@ -43,3 +47,10 @@ const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log(`🚀 Server running on port ${PORT}`);
 });
+
+
+
+
+
+
+//SWAGGER CODE

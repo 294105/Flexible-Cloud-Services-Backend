@@ -39,7 +39,7 @@ const purchaseOrderSchema = new mongoose.Schema({
 // Calculate the total cost before saving
 purchaseOrderSchema.pre('save', async function (next) {
   this.totalCost = this.numberOfDays * this.dailyCost;
-  this.trainerCost = this.totalCost; // Set trainer cost as total cost for now, if needed split later
+  // Set trainer cost as total cost for now, if needed split later
   
   // Find the company to update financials
   const Company = mongoose.model('Company');
