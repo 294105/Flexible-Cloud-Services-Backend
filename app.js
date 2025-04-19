@@ -17,6 +17,12 @@ app.use(express.json());
 app.get('/', (req, res) => {
   res.send('🌐 Flexible Cloud Services API is running');
 });
+const financeRoutes = require('./routes/finance');
+app.use('/api/finance', financeRoutes);
+// app.js
+// const financeRoutes = require('./routes/finance');
+// app.use('/api/finance', financeRoutes);
+
 
 // TODO: Import and mount route files here when created
 // Example:
