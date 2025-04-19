@@ -6,7 +6,8 @@ const SalaryPaymentSchema = new mongoose.Schema({
     ref: 'Employee',
     required: true
   },
-  amount: {
+  Name: String,
+  Salary: {
     type: Number,
     required: true
   },
@@ -14,11 +15,7 @@ const SalaryPaymentSchema = new mongoose.Schema({
     type: Date,
     default: Date.now
   },
-  paidBy: {
-    type: String,
-    required: true
-  },
-  note: String
+ status:String
 });
 
 module.exports = mongoose.model('SalaryPayment', SalaryPaymentSchema);

@@ -39,11 +39,23 @@ exports.paySalary = async (req, res) => {
 
 // Get all salary payments
 exports.getAllSalaryPayments = async (req, res) => {
-  try {
-    const salaryPayments = await SalaryPayment.find().populate('employeeId');
-    res.status(200).json(salaryPayments);
-  } catch (error) {
-    console.error('❌ Error fetching salary payments:', error);
-    res.status(500).json({ message: 'Server error', error: error.message });
-  }
-};
+    try {
+      const salaryPayments = await SalaryPayment.find()
+        .populate('employeeId', 'name salary') // populate only name and salary from Employee
+        .select('status paymentDate employeeId'); // select fields from SalaryPayment
+  
+      // Map to desired response structure
+      const result = salaryPayments.map(payment => ({
+        name: payment.employeeId.name,
+        salary: payment.employeeId.salary,
+        status: payment.status || 'Paid',
+        paymentDate: payment.paymentDate
+      }));
+  
+      res.status(200).json(result);
+    } catch (error) {
+      console.error('❌ Error fetching salary payments:', error);
+      res.status(500).json({ message: 'Server error', error: error.message });
+    }
+  };
+  

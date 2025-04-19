@@ -2,7 +2,8 @@ const express = require('express');
 const router = express.Router();
 const invoiceController = require('../controllers/invoiceController');
 
-// Only GET route — generate invoice from purchase order
-router.get('/:id', invoiceController.getInvoiceById);
+router.get('/invoices', invoiceController.getAllInvoices); // More specific route first
+//router.get('/:id', invoiceController.getInvoiceById);      // Keep dynamic route last
+
 
 module.exports = router;
