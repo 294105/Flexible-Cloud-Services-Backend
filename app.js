@@ -17,8 +17,14 @@ app.use(express.json());
 app.get('/', (req, res) => {
   res.send('🌐 Flexible Cloud Services API is running');
 });
+
 const financeRoutes = require('./routes/finance');
 app.use('/api/finance', financeRoutes);
+
+// app.js
+const purchaseOrderRoutes = require('./routes/purchaseOrders');
+app.use('/api/purchase-orders', purchaseOrderRoutes);
+
 // app.js
 // const financeRoutes = require('./routes/finance');
 // app.use('/api/finance', financeRoutes);
