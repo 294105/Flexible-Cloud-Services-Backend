@@ -25,6 +25,10 @@ app.use('/api/finance', financeRoutes);
 const purchaseOrderRoutes = require('./routes/purchaseOrders');
 app.use('/api/purchase-orders', purchaseOrderRoutes);
 
+const invoiceRoutes = require('./routes/invoices');
+app.use('/api/invoices', invoiceRoutes);
+
+
 // app.js
 // const financeRoutes = require('./routes/finance');
 // app.use('/api/finance', financeRoutes);

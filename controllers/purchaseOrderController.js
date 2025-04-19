@@ -12,4 +12,26 @@ exports.createPurchaseOrder = async (req, res) => {
       res.status(500).json({ message: 'Server error', error: error.message });
     }
   };
+  exports.getAllPurchaseOrders = async (req, res) => {
+    try {
+      const orders = await PurchaseOrder.find();
+      res.status(200).json(orders);
+    } catch (error) {
+      console.error('❌ Error fetching purchase orders:', error);
+      res.status(500).json({ message: 'Server error', error: error.message });
+    }
+  };
+  
+  exports.getPurchaseOrderById = async (req, res) => {
+    try {
+      const order = await PurchaseOrder.findById(req.params.id);
+      if (!order) {
+        return res.status(404).json({ message: 'Purchase Order not found' });
+      }
+      res.status(200).json(order);
+    } catch (error) {
+      console.error('❌ Error fetching purchase order:', error);
+      res.status(500).json({ message: 'Server error', error: error.message });
+    }
+  };
   
